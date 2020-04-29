@@ -21,7 +21,7 @@ exports.add = {
     status:{ type: new GraphQLNonNull(GraphQLString)},
     billing:{ type: new GraphQLList(GraphQLString)}
   },
-  resolve: async(root, args)=> { 
+  resolve: async(root, {empCode,email})=> { 
 
     const user = await UserModel.findOne({ $or:[ {empCode:args.empCode} , {email:args.email}]});
     if (user) {
