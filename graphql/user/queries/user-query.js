@@ -13,7 +13,7 @@ exports.UserQuery = new GraphQLObjectType({
         type: new GraphQLList(UserType),
         resolve:  async ()=> {
           const users = await UserModel.find();
-          if (users) {
+          if (!users) {
             const error = new Error(MESSAGE_INFO.RESOURCE_NOT_FOUND);
             error.code  = ERROR_CODE.RESOURCE.RESOURCE_NOT_FOUND;
             throw error;
